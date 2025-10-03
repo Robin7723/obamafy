@@ -1,0 +1,22 @@
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
+assets
+
+__pycache__
+
+*.jpg
+*.png
+*.jpeg
+*.gif
+*.mp4
+*.webm
+*.webp
+*.avif
