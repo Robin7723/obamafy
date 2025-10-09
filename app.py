@@ -52,7 +52,6 @@ class FluidApp(moderngl_window.WindowConfig):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
-        # Parse args
         args = self.argv
 
         image_paths_to_load = []
@@ -62,7 +61,6 @@ class FluidApp(moderngl_window.WindowConfig):
             if not path.exists():
                 raise FileNotFoundError(f"Provided path does not exist: {path}")
             if path.is_dir():
-                # Add all valid image files from the directory
                 dir_files = sorted([f for f in path.iterdir() if f.suffix.lower() in valid_extensions])
                 image_paths_to_load.extend(dir_files)
                 print(f"✓ Found {len(dir_files)} images in directory: {path.name}")
@@ -179,7 +177,6 @@ class FluidApp(moderngl_window.WindowConfig):
         self.prog_projection = self.load_program(shader_dir / "fullscreen.vert", shader_dir / "projection.frag")
         self.prog_apply_forces = self.load_program(shader_dir / "fullscreen.vert", shader_dir / "apply_forces.frag")
         self.prog_render = self.load_program(shader_dir / "fullscreen.vert", shader_dir / "render.frag")
-        # REMOVED: self.prog_color_inject
 
         # Uniforms constant across frames
         for prog in (self.prog_advect, self.prog_divergence, self.prog_jacobi,
@@ -259,14 +256,12 @@ class FluidApp(moderngl_window.WindowConfig):
         vel = np.zeros((h, w, 4), dtype=np.float32)
         
         # 1. Add initial random noise to the velocity field
-        # This replaces the first nested loop by performing all calculations on the entire array at once.
         angles = np.random.uniform(0, 2 * np.pi, (h, w))
         mags = np.random.uniform(0, 3.0, (h, w))
         vel[:, :, 0] = np.cos(angles) * mags
         vel[:, :, 1] = np.sin(angles) * mags
         
         # 2. Add several large-scale vortices
-        # This replaces the second, very slow, nested loop structure.
         num_vortices = 5
         # Create coordinate grids that store the x and y coordinate for each pixel
         Y, X = np.mgrid[0:h, 0:w]
@@ -297,7 +292,6 @@ class FluidApp(moderngl_window.WindowConfig):
             falloff = np.exp(-dist_masked / falloff_scale)
 
             # Apply the vortex force to the velocity field using the mask.
-            # This updates only the relevant pixels in a single operation.
             vel[mask, 0] += -dy_masked / dist_masked * strength * falloff
             vel[mask, 1] += dx_masked / dist_masked * strength * falloff
         
@@ -318,7 +312,6 @@ class FluidApp(moderngl_window.WindowConfig):
             srgb_float = self.seed_np.astype(np.float32) / 255.0
             dye = np.power(srgb_float, 2.2)
         else:
-            # Otherwise, use the original swirling logic.
             print("✓ Initializing dye field with Voronoi mosaic.")
             target_float = self.target_np.astype(np.float32) / 255.0
 
@@ -378,18 +371,6 @@ class FluidApp(moderngl_window.WindowConfig):
                 self.view_mode = 5
             elif key == keys.S:
                 self.save_frame()
-            elif key == keys.LEFT_BRACKET:
-                self.params.vorticity = max(0.0, self.params.vorticity - 0.05)
-                print("vorticity:", self.params.vorticity)
-            elif key == keys.RIGHT_BRACKET:
-                self.params.vorticity = min(3.0, self.params.vorticity + 0.05)
-                print("vorticity:", self.params.vorticity)
-            elif key == keys.COMMA:
-                self.params.viscosity = max(0.0, self.params.viscosity * 0.8)
-                print("viscosity:", self.params.viscosity)
-            elif key == keys.PERIOD:
-                self.params.viscosity = min(0.01, self.params.viscosity * 1.25)
-                print("viscosity:", self.params.viscosity)
             elif key == keys.N:
                 self.switch_to_next_target()
 

@@ -14,7 +14,7 @@ out vec4 fragColor;
 
 void main() {
     if (view_mode == 1) {
-        // Final: just show the dye (it will converge to target via forces)
+        // just show the dye (it will converge to target via forces)
         vec3 dye = texture(Texture0, uv).rgb;
         // Apply gamma correction for display
         fragColor = vec4(pow(dye, vec3(1.0/2.2)), 1.0);

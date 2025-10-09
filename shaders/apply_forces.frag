@@ -1,4 +1,3 @@
-// ./shaders/apply_forces.frag
 #version 330
 precision highp float;
 
@@ -27,10 +26,6 @@ in vec2 uv;
 out vec4 fragColor;
 
 vec2 texel() { return 1.0 / resolution; }
-
-// ======================================================================
-// === NEW AND IMPROVED UNMIX LOGIC =====================================
-// ======================================================================
 
 // Helper function to calculate "color pressure" at a given point.
 // Pressure is high when a pixel is surrounded by dissimilar colors.
@@ -67,7 +62,6 @@ vec2 get_unmix_force(vec2 p, vec2 px) {
 // ======================================================================
 
 vec2 get_vorticity_force(vec2 p, vec2 px) {
-    // ... (rest of the shader is unchanged)
     vec2 vl = texture(Texture0, p - vec2(px.x, 0)).xy;
     vec2 vr = texture(Texture0, p + vec2(px.x, 0)).xy;
     vec2 vb = texture(Texture0, p - vec2(0, px.y)).xy;
