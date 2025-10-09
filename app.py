@@ -17,16 +17,17 @@ from moderngl_window.context.base import BaseWindow
 
 @dataclass
 class SimParams:
-    dt: float = 1/15.0
-    viscosity: float = 0.001
-    vorticity: float = 3.0
-    convergence_force: float = 200.0
+    dt: float = 1/25.0
+    viscosity: float = 0.01
+    vorticity: float = 0.15
+    convergence_force: float = 100.0
     dye_dissipation: float = 1.0
-    vel_dissipation: float = 0.999
-    pressure_iterations: int = 30
+    vel_dissipation: float = 1.0
+    pressure_iterations: int = 5
     mouse_radius: float = 0.1
     turbulence_strength: float = 0.2
     settling_strength: float = 0.0
+    unmix_strength: float = 100.0
 
 
 class FluidApp(moderngl_window.WindowConfig):
@@ -481,6 +482,7 @@ class FluidApp(moderngl_window.WindowConfig):
             self.prog_apply_forces['settling_strength'].value = self.params.settling_strength
             self.prog_apply_forces['turbulence_strength'].value = self.params.turbulence_strength
             self.prog_apply_forces['mouse_radius'].value = self.params.mouse_radius
+            self.prog_apply_forces['unmix_strength'].value = self.params.unmix_strength
             self.quad.render(self.prog_apply_forces)
             self.prog_apply_forces['has_mouse'].value = 0
 
