@@ -142,7 +142,7 @@ If you prefer not to use Nix, you can set up the project on **native Windows, ma
 
     ```bash
     # Basic usage with the default image
-    python app.py --images cropped-image.png
+    uv run python app.py --images cropped-image.png
     ```
 
 -----
@@ -156,37 +156,34 @@ You can customize the simulation by passing arguments directly to the Python scr
   * **Run with a single target image:**
 
     ```bash
-    # Nix/devenv:
     uv run python app.py --images my_picture.jpg
-    # Manual setup:
-    python app.py --images my_picture.jpg
     ```
 
   * **Run with multiple images (switch between them with the 'N' key):**
 
     ```bash
-    python app.py --images cat.png dog.png
+    uv run python app.py --images cat.png dog.png
     ```
 
   * **Load all images from a directory:**
 
     ```bash
     # On macOS/Linux:
-    python app.py --images ./my_image_folder/
+    uv run python app.py --images ./my_image_folder/
     # On Windows:
-    python app.py --images "C:\Path\To\Your\Images\"
+    uv run python app.py --images "C:\Path\To\Your\Images\"
     ```
 
   * **Start with a different initial pattern (seed image):**
 
     ```bash
-    python app.py --images target.png --seed_image abstract_art.png
+    uv run python app.py --images target.png --seed_image abstract_art.png
     ```
 
   * **Automatically transition to the next image every 10 seconds (10000 ms):**
 
     ```bash
-    python app.py --images ./my_image_folder/ --auto_transition 10000
+    uv run python app.py --images ./my_image_folder/ --auto_transition 10000
     ```
 
 ### All Available Arguments
