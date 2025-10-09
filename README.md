@@ -11,8 +11,8 @@
     A real-time, interactive 2D fluid simulation that magically rearranges colored dye to form any target image. This project uses GPU-accelerated fluid dynamics (Navier-Stokes equations) to create mesmerizing, artistic animations from your favorite pictures.
   </p>
   <p>
-    <i>The core concept is inspired by the incredible work of **@Spu7Nix**. Check out the original short that sparked this idea:
-    <a href="https://www.youtube.com/shorts/MeFi68a2pP8" target="_blank">Fluid Simulation that Creates Images - YouTube</a></i>
+    <i>The core concept is inspired by the incredible work of @Spu7Nix. Check out the original short that sparked this idea:
+    <a href="https://www.youtube.com/shorts/MeFi68a2pP8">Fluid Simulation that Creates Images - YouTube</a></i>
   </p>
 
   <h2>✨ See it in Action! ✨</h2>
