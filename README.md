@@ -1,24 +1,26 @@
-# Obamafy: Fluid Simulation Image Recreation 🎨
+<div align="center">
+  <h1>
+    🎨 Obamafy 🎨
+  </h1>
 
-A real-time, interactive 2D fluid simulation that magically rearranges colored dye to form any target image. This project uses GPU-accelerated fluid dynamics (Navier-Stokes equations) to create mesmerizing, artistic animations from your favorite pictures.
+  <p><i>Fluid Simulation Image Recreation!</i></p>
 
-The core concept is inspired by the incredible work of **@Spu7Nix**. Check out the original short that sparked this idea:
-[**Fluid Simulation that Creates Images - YouTube**](https://www.youtube.com/shorts/MeFi68a2pP8)
+  ---
+  
+  <p>
+    A real-time, interactive 2D fluid simulation that magically rearranges colored dye to form any target image. This project uses GPU-accelerated fluid dynamics (Navier-Stokes equations) to create mesmerizing, artistic animations from your favorite pictures.
+  </p>
+  <p>
+    <i>The core concept is inspired by the incredible work of **@Spu7Nix**. Check out the original short that sparked this idea:
+    <a href="https://www.youtube.com/shorts/MeFi68a2pP8" target="_blank">Fluid Simulation that Creates Images - YouTube</a></i>
+  </p>
 
-## ✨ Demos
-
-\<table\>
-\<tr\>
-\<td align="center"\>\<b\>Time-lapse Convergence\</b\>\</td\>
-\<td align="center"\>\<b\>Interactive Features\</b\>\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<img src="https" alt="Demo video showing the fluid converging into an image" width="400"/\>
-\</td\>
-\<td\>\<img src="https" alt="Demo video showing interactive stirring and image switching" width="400"/\>
-\</td\>
-\</tr\>
-\</table\>
+  <h2>✨ See it in Action! ✨</h2>
+  
+  <p>And here's another little glimpse into what the friendly engine can do:</p>
+  <video src=""></video>
+  <br><br>
+</div>
 
 ## 🚀 Features
 
@@ -29,13 +31,15 @@ The core concept is inspired by the incredible work of **@Spu7Nix**. Check out t
   * **Auto-Transitions**: Automatically cycle through a list of target images.
   * **Customizable Physics**: Tweak parameters like vorticity and viscosity in real-time.
   * **Debug Views**: Switch between different visual modes to see the underlying physics (velocity, pressure, etc.).
-  * **Reproducible Environment**: Uses **Nix** and **devenv** to ensure a hassle-free, one-command setup. No need to manually install Python packages or system libraries\!
+  * **Reproducible Environment**: Uses **Nix** and **devenv** for a hassle-free, one-command setup.
 
 -----
 
-## ⚙️ Getting Started
+## ⚙️ Getting Started (Recommended: Nix)
 
-This project is designed to be set up with a single command, even if you have no programming experience. The setup is primarily tested on **Mac** and **Windows (via WSL2)**.
+This project is designed for a one-command setup using **Nix** and **devenv**, which guarantees a perfectly reproducible environment. This is the recommended method for **Mac** and **Linux** (including **Windows via WSL2**).
+
+> For a traditional Python setup on native **Windows, macOS, or Linux** without installing Nix, please see the **[Alternative Setup Guide](#alternative-setup)** below.
 
 ### Prerequisites
 
@@ -49,11 +53,11 @@ You only need to install two tools on your system first.
 
       * **Installation Guide**: Once Nix is installed, follow the simple steps at [**devenv.sh/getting-started**](https://devenv.sh/getting-started/).
 
-> **Note for Windows Users**: You must first set up the Windows Subsystem for Linux (WSL2). Follow [**this official Microsoft guide**](https://learn.microsoft.com/en-us/windows/wsl/install) to install WSL2 and a distribution like Ubuntu. Then, open your Ubuntu terminal and proceed with the Nix and `devenv` installations above.
+> **Note for Windows Users**: This method requires the Windows Subsystem for Linux (WSL2). Follow [**this official Microsoft guide**](https://learn.microsoft.com/en-us/windows/wsl/install) to install WSL2 and a distribution like Ubuntu. Then, open your Ubuntu terminal and proceed with the Nix and `devenv` installations above.
 
-### Installation & Setup
+### Installation & Running
 
-Once the prerequisites are met, setting up the project is as easy as 1-2-3.
+Once the prerequisites are met, setting up and running the project is simple.
 
 1.  **Clone the Repository**
     Open your terminal and run this command to download the project files:
@@ -70,68 +74,129 @@ Once the prerequisites are met, setting up the project is as easy as 1-2-3.
     devenv shell
     ```
 
-    The first time you run this, `devenv` will automatically download and install **all** the required tools, Python packages, and system libraries. This might take several minutes, but you only have to do it once\! Subsequent runs will be almost instant.
+    The first time you run this, `devenv` will automatically download and install **all** the required tools and libraries. This might take several minutes, but you only have to do it once\!
 
-You are now inside the project's environment, ready to go\!
+3.  **Run the Simulation**
+    With the environment active, use the built-in script to start:
+
+    ```bash
+    devenv run start
+    ```
 
 -----
 
-## 🎮 How to Run
+## <a id="alternative-setup"></a> ⚙️ Alternative Setup: Manual Python Environment
 
-You can run the simulation using a simple command. Make sure you have at least one image file (e.g., `.png`, `.jpg`) in the project directory.
+If you prefer not to use Nix, you can set up the project on **native Windows, macOS, or Linux** using standard Python tools.
 
-### Basic Usage
+### Prerequisites
 
-The easiest way to start is with the built-in script. This command will start the simulation using an image named `cropped-image.png`.
+1.  **Python 3.12+**: Download from [python.org](https://python.org). During installation on Windows, ensure you check the box **"Add Python to PATH"**.
+2.  **Git**: For cloning the repository. You can get it from [git-scm.com](https://git-scm.com/).
+3.  **Up-to-date GPU Drivers**: This is essential for OpenGL. Make sure you have the latest drivers from NVIDIA, AMD, or Intel.
 
-```bash
-devenv run start
-```
+### Installation & Running
 
-To use your own image, simply change the filename in the `devenv.nix` file under `scripts.start.exec`, or use the full command-line options below.
+1.  **Clone the Repository**
+    Open your terminal (**PowerShell** or **Command Prompt** on Windows) and run:
 
-### Advanced Usage (Command-Line Arguments)
+    ```bash
+    git clone https://github.com/your-username/obamafy.git
+    cd obamafy
+    ```
 
-You can customize the simulation by passing arguments directly to the Python script. Here are some examples:
+2.  **Create and Activate a Virtual Environment**
+    This isolates the project's dependencies.
+
+    ```bash
+    # Create the environment
+    python -m venv .venv
+    ```
+
+    Now, activate it. The command differs based on your operating system:
+
+      * On **Windows** (in PowerShell or Command Prompt):
+        ```powershell
+        .\.venv\Scripts\activate
+        ```
+      * On **macOS and Linux** (in bash, zsh, etc.):
+        ```bash
+        source .venv/bin/activate
+        ```
+
+    Your terminal prompt should now be prefixed with `(.venv)`.
+
+3.  **Install Dependencies**
+    We'll use `pip` to install the `uv` package manager, and then use `uv` to install all the project's dependencies from the `pyproject.toml` file.
+
+    ```bash
+    # 1. Install uv
+    pip install uv
+
+    # 2. Install all project packages
+    uv pip install .
+    ```
+
+4.  **Run the Simulation**
+    Now you can run the application directly using `python`.
+
+    ```bash
+    # Basic usage with the default image
+    python app.py --images cropped-image.png
+    ```
+
+-----
+
+## 🎮 How to Run (Advanced Usage)
+
+You can customize the simulation by passing arguments directly to the Python script.
+
+**Note**: If you used the **Nix/devenv** setup, prefix commands with `uv run`. If you used the **manual setup**, just use `python`.
 
   * **Run with a single target image:**
 
     ```bash
+    # Nix/devenv:
     uv run python app.py --images my_picture.jpg
+    # Manual setup:
+    python app.py --images my_picture.jpg
     ```
 
   * **Run with multiple images (switch between them with the 'N' key):**
 
     ```bash
-    uv run python app.py --images cat.png dog.png
+    python app.py --images cat.png dog.png
     ```
 
   * **Load all images from a directory:**
 
     ```bash
-    uv run python app.py --images ./my_image_folder/
+    # On macOS/Linux:
+    python app.py --images ./my_image_folder/
+    # On Windows:
+    python app.py --images "C:\Path\To\Your\Images\"
     ```
 
   * **Start with a different initial pattern (seed image):**
 
     ```bash
-    uv run python app.py --images target.png --seed_image abstract_art.png
+    python app.py --images target.png --seed_image abstract_art.png
     ```
 
   * **Automatically transition to the next image every 10 seconds (10000 ms):**
 
     ```bash
-    uv run python app.py --images ./my_image_folder/ --auto_transition 10000
+    python app.py --images ./my_image_folder/ --auto_transition 10000
     ```
 
 ### All Available Arguments
 
-| Argument                | Default | Description                                                               |
+| Argument              | Default | Description                                                               |
 | ----------------------- | ------- | ------------------------------------------------------------------------- |
 | `--images`              | *None* | **(Required)** One or more paths to target images or directories.         |
 | `--auto_transition`     | `0`     | Interval in milliseconds to auto-switch images. `0` disables it.          |
 | `--seed_image`          | *None* | Path to an image used for the initial dye state. Defaults to a mosaic.    |
-| `--scale`               | `1.0`   | Multiplier for the simulation resolution (e.g., `0.5` for half-res).       |
+| `--scale`               | `1.0`   | Multiplier for the simulation resolution (e.g., `0.5` for half-res).      |
 | `--sim_w`               | `768`   | Manually set the simulation width.                                        |
 | `--sim_h`               | `0`     | Manually set the simulation height. `0` preserves the aspect ratio.       |
 | `--no_vsync`            | `false` | Disable VSync, which may increase FPS.                                    |
@@ -142,13 +207,13 @@ You can customize the simulation by passing arguments directly to the Python scr
 
 You can interact with the simulation in real-time.
 
-| Key                 | Action                                    |
-| ------------------- | ----------------------------------------- |
+| Key            | Action                                    |
+| -------------- | ----------------------------------------- |
 | **Mouse Drag** | Click and drag to stir the fluid.         |
 | **`Space`** | Pause or resume the simulation.           |
 | **`R`** | Reset the fluid and dye to its initial state. |
 | **`N`** | Switch to the next target image.          |
-| **`S`** | Save the current view as `output.png`. (buggy, crashes the app 50/50)    |
+| **`S`** | Save the current view as `output.png`. (buggy, crashes the app 50/50) |
 | **`1`** | **View Mode**: Final Dye (default)        |
 | **`2`** | **View Mode**: Velocity Field             |
 | **`3`** | **View Mode**: Pressure Field             |
@@ -172,6 +237,4 @@ The simulation is built on the principles of computational fluid dynamics (CFD),
 
 ## 📄 License
 
-This project is open-source and available under the [MIT License]().
-
------
+This project is open-source and available under the [MIT License](LICENSE).
