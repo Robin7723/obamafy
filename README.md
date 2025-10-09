@@ -17,8 +17,8 @@
 
   <h2>✨ See it in Action! ✨</h2>
   
-  <p>And here's another little glimpse into what the friendly engine can do:</p>
-  <video src=""></video>
+  <p>Here's a little glimpse of what the simulation can do:</p>
+  <video src="https://github.com/user-attachments/assets/83e2e714-8542-4021-a80e-4aaa4883ef9e"></video>
   <br><br>
 </div>
 
