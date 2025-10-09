@@ -38,11 +38,9 @@ in
   ];
 
   # -------------------------------------------------------------------------
-  # 3. Environment variables / WSL quirks
+  # 3. Environment variables
   # -------------------------------------------------------------------------
   env = {
-    LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
-    CUDA_PATH = "/usr/lib/wsl/lib";
   };
 
   # -------------------------------------------------------------------------
@@ -52,19 +50,11 @@ in
     source .devenv/state/venv/bin/activate
 
     echo "----------------------------------------------"
-    echo "Python 3.12 • uv • PyTorch - CUDA devenv (WSL)"
+    echo "Python 3.12 • uv • OpenGL"
     echo "----------------------------------------------"
 
     echo "[INFO] Python:"
     python --version
-    echo ""
-
-    echo "[INFO] Checking NVIDIA in WSL…"
-    if nvidia-smi >/dev/null 2>&1; then
-      nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader
-    else
-      echo "!! nvidia-smi not found - CUDA is unlikely to work"
-    fi
     echo ""
 
     echo "[INFO] OpenGL Renderer:"
@@ -74,17 +64,7 @@ in
     else
       echo "!! glxinfo not available"
     fi
-    echo ""
-
-    echo "[INFO] Verifying PyTorch:"
-    python - <<'PY'
-    import torch, sys
-    print("torch", torch.__version__)
-    print("CUDA available:", torch.cuda.is_available())
-    if torch.cuda.is_available():
-        print("GPU:", torch.cuda.get_device_name(0))
-    PY
-        echo "----------------------------------------------"
+    echo "----------------------------------------------"
   '';
 
   # -------------------------------------------------------------------------
