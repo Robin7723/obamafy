@@ -71,6 +71,6 @@ in
   # 5. Helper scripts
   # -------------------------------------------------------------------------
   scripts.start.exec = ''
-    uv run python app.py --image cropped-image.png
+    uv run python .\app.py --images .\assets\demo\  --seed_image .\assets\seed.jpeg --sim_w 1024
   '';
 }
