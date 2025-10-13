@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   # ----- Python toolchain ----------------------------------------------------
   python = pkgs.python312;
+  inherit (pkgs.stdenv) isLinux isDarwin;
 in
 {
   # -------------------------------------------------------------------------
@@ -21,21 +22,25 @@ in
   # -------------------------------------------------------------------------
   # 2. Packages available in the shell
   # -------------------------------------------------------------------------
-  packages = with pkgs; [
-    # OpenGL / Mesa drivers for hardware acceleration
-    mesa
-    libGL
-    libGLU
-    glxinfo
-
-    # X11 libraries (needed for OpenGL contexts)
-    xorg.libX11
-    xorg.libXext
-    xorg.libXrender
-    xorg.libxcb
-
-    zlib
-  ];
+  packages =
+    with pkgs;
+    [
+      zlib
+      pkg-config
+    ]
+    # Linux-only OpenGL/GLX/X11 bits
+    ++ lib.optionals isLinux [
+      mesa
+      libGL
+      libGLU
+      glxinfo
+      xorg.libX11
+      xorg.libXext
+      xorg.libXrender
+      xorg.libxcb
+    ]
+    # macOS uses Apple frameworks for OpenGL; no extra packages needed
+    ++ lib.optionals isDarwin [ ];
 
   # -------------------------------------------------------------------------
   # 3. Environment variables
@@ -59,10 +64,11 @@ in
 
     echo "[INFO] OpenGL Renderer:"
     if command -v glxinfo >/dev/null 2>&1; then
-      glxinfo | grep "OpenGL renderer" || echo "!! Could not get OpenGL info"
-      glxinfo | grep "OpenGL version" || true
+      glxinfo | grep -E "OpenGL (renderer|version)" || echo "!! Could not get OpenGL info via glxinfo"
+    elif [ "$(uname -s)" = "Darwin" ]; then
+      system_profiler SPDisplaysDataType | awk '/Chipset Model|Vendor|VRAM|Metal|Displays:/{print}'
     else
-      echo "!! glxinfo not available"
+      echo "!! No GPU info tool available on this platform"
     fi
     echo "----------------------------------------------"
   '';
@@ -71,6 +77,6 @@ in
   # 5. Helper scripts
   # -------------------------------------------------------------------------
   scripts.start.exec = ''
-    uv run python .\app.py --images .\assets\demo\  --seed_image .\assets\seed.jpeg --sim_w 1024
+    uv run python app.py --images .\assets\demo\  --seed_image .\assets\seed.jpeg --sim_w 1024
   '';
 }
